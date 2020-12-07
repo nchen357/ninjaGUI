@@ -1,11 +1,13 @@
 function ninjaGUI(fname)
 %Routine to check initial configuration of the fNIRS device and launch the
 %startup sequence
-if nargin==0
+if isfile('config.cfg')
+    fname = 'config.cfg';
+elseif nargin==0
     fname=uigetfile({'*.cfg', 'Hardware configuration file (*.cfg)'});
     if ~fname
-        disp('No file selected, defaulting to fNIRS.cfg')
-        fname='fNIRS.cfg';
+        disp('No file selected, defaulting to config.cfg')
+        fname='config.cfg';
     end
 elseif length(fname)<4
     fname = strcat(fname,'.cfg');
